@@ -30,8 +30,9 @@
         }
 
         public function getStagiaire(){
-            $sql = "Select * from personne  LEFT JOIN ville ON personne.id = ville.personneId;
+            $sql = "Select * from personne  WHERE Type = 'stagiaire'
             ";
+            
 
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
@@ -43,7 +44,7 @@
                 $Stagiaire->setId($StagiaireData['id']);
                 $Stagiaire->setNom($StagiaireData['Nom']);
                 $Stagiaire->setCne($StagiaireData['Cne']);
-                $Stagiaire->setVille($StagiaireData['Ville']);
+                $Stagiaire->setType($StagiaireData['Type']);
                 array_push($Stagiaires, $Stagiaire);
             }
             return $Stagiaires;

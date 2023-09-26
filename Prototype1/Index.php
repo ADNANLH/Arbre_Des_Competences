@@ -64,7 +64,7 @@ $StagiaresData = $GestionStagiaire->getStagiaire();
             <tr>
                 <th>Nom</th>
                 <th>CNE</th>
-                <th>Ville</th>
+                <th>Type</th>
             </tr>
             <?php
             foreach ($StagiaresData as $Stagiaire) {
@@ -75,7 +75,7 @@ $StagiaresData = $GestionStagiaire->getStagiaire();
                         <?= $Stagiaire->getCne() ? $Stagiaire->getCne() : "null"; ?>
                     </td>
                     <td>
-                        <?= $Stagiaire->getVille() ? $Stagiaire->getVille() : "null"; ?>
+                        <?= $Stagiaire->getType() ? $Stagiaire->getType() : "null"; ?>
                     </td>
                 </tr>
             <?php } ?>
