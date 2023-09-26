@@ -34,6 +34,8 @@
             ";
             
 
+
+            
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $StagiairesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
