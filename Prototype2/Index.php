@@ -1,21 +1,7 @@
 <?php
-// require_once "./prototype1/Data/GestionStagiaire.php";
-include "./GestionStagiaire.php";
 
-
-
-// Trouver tous les stagiaire depuis la base de données 
-$GestionStagiaire = new GestionStagiaire();
-$StagiaresData = $GestionStagiaire->getStagiaire();
-
-// echo "<pre>";
-// print_r($StagiaresData);
-// echo "</pre>";
-
-
+require 'Managment/StagiaireManagment.php';
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -64,19 +50,14 @@ $StagiaresData = $GestionStagiaire->getStagiaire();
             <tr>
                 <th>Nom</th>
                 <th>CNE</th>
-                <th>Ville</th>
             </tr>
             <?php
-            foreach ($StagiaresData as $Stagiaire) {
+            foreach ($stagiaires as $stagiaire) {
             ?>
                 <tr>
-                    <td><?= $Stagiaire->getNom() ? $Stagiaire->getNom() : "null" ?></td>
-                    <td>
-                        <?= $Stagiaire->getCne() ? $Stagiaire->getCne() : "null"; ?>
-                    </td>
-                    <td>
-                        <?= $Stagiaire->getVille() ? $Stagiaire->getVille() : "null"; ?>
-                    </td>
+                    <td><?= $stagiaire->getId() ? $stagiaire->getId() : "Null" ?></td>
+                    <td><?= $stagiaire->getNom() ? $stagiaire->getNom() : "Null" ?></td>
+                    <td><?= $stagiaire->getCNE() ? $stagiaire->getCNE() : "Null"; ?></td>
                 </tr>
             <?php } ?>
         </table>
