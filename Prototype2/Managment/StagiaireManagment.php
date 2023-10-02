@@ -34,14 +34,18 @@
             return $stagiaires;
         }
 
-        public function Add($stagiaire)
-        {
+        public function Add($stagiaire) {
             $Nom = $stagiaire->getNom();
             $CNE = $stagiaire->getCNE();
         
             // Prepare the SQL statement with placeholders
-            $sql = "INSERT INTO `personne`(`Nom`, `CNE`) VALUES (?, ?)";
+            $sql = "INSERT INTO `personne` (`Nom`, `CNE`) VALUES (?, ?)";
             $stmt = $this->conn->prepare($sql);
+        
+            if (!$stmt) {
+                // Handle the error here
+                die("Query preparation failed: " . $this->conn->error);
+            }
         
             // Bind the parameters
             $stmt->bind_param("ss", $Nom, $CNE);
@@ -57,9 +61,12 @@
         }
         
         
+        
+        
+        
     }
-    $stagiaireManager = new StagiaireManagment($conn);
-    $stagiaires = $stagiaireManager->getAllData();
+   
+    
 
 
 

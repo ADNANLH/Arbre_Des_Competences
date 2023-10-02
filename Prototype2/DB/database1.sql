@@ -2,15 +2,14 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : mar. 26 sep. 2023 à 13:11
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Host: 127.0.0.1
+-- Generated on: Tue, 26 Sep 2023 13:11
+-- Server version: 10.4.28-MariaDB
+-- PHP version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,24 +17,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `database1`
+-- Database: `database1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personne`
+-- Table structure for table `personne`
 --
 
 CREATE TABLE `personne` (
-  `Id` int(11) NOT NULL,
-  `Nom` varchar(50) NOT NULL,
-  `CNE` varchar(11) NOT NULL,
-  `Ville_Id` int(11) NOT NULL
+  `Id` INT AUTO_INCREMENT PRIMARY KEY,
+  `Nom` VARCHAR(50) NOT NULL,
+  `CNE` VARCHAR(11) NOT NULL,
+  `Ville_Id` INT(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `personne`
+-- Data dump for table `personne`
 --
 
 INSERT INTO `personne` (`Id`, `Nom`, `CNE`, `Ville_Id`) VALUES
@@ -67,16 +66,16 @@ INSERT INTO `personne` (`Id`, `Nom`, `CNE`, `Ville_Id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ville`
+-- Table structure for table `ville`
 --
 
 CREATE TABLE `ville` (
-  `Id` int(11) NOT NULL,
-  `Nom` varchar(50) NOT NULL
+  `Id` INT AUTO_INCREMENT PRIMARY KEY,
+  `Nom` VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `ville`
+-- Data dump for table `ville`
 --
 
 INSERT INTO `ville` (`Id`, `Nom`) VALUES
@@ -100,6 +99,7 @@ INSERT INTO `ville` (`Id`, `Nom`) VALUES
 (18, 'Taourirt'),
 (19, 'Sefrou'),
 (20, 'Youssoufia');
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

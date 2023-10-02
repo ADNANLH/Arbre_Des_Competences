@@ -1,24 +1,30 @@
 <?php
 
-    require '../Managment/StagiaireManagment.php';
-    function getAllCities($pdo) {
-        $villes = array();
-        
-        // SQL query using placeholders
-        $sql = "SELECT * FROM ville";
-        
-        // Prepare the SQL statement
-        $stmt = $pdo->prepare($sql);
-        
-        // Execute the prepared statement
-        $stmt->execute();
-        
-        // Fetch the results as an associative array
-        $villes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $villes;
 
+
+    require '../Managment/StagiaireManagment.php';
+
+    if (!empty($_POST)) {
+        // Create a new StagiaireManagment instance
+        $stagiaireManager = new StagiaireManagment($conn);
+
+        // Create a new Stagiaire instance and set its properties
+        $stagiaire = new Stagiaire();
+        $stagiaire->setNom($_POST['Nom']);
+        $stagiaire->setCNE($_POST['CNE']);
+
+        // Call the Add method of StagiaireManagment with the Stagiaire instance
+        $result = $stagiaireManager->Add($stagiaire);
+
+        if ($result) {
+            // Insertion successful
+            header("Location: ../index.php");
+        } else {
+            // Insertion failed, handle the error as needed
+            echo "Insertion failed.";
+        }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,28 +44,13 @@
     <div class="container">
         <h2>Ajouter un stagiaire</h2>
         <form action="" method="POST">
-            <label for="nom">Nom et Prénom:</label>
-            <input type="text" id="nom" name="nom" required><br><br>
+            <label for="Nom">Nom Complet:</label>
+            <input type="text" id="nom" name="Nom" required><br><br>
 
-            <label for="cne">CNE</label>
-            <input type="text" id="cne" name="cne" required><br><br>
+            <label for="CNE">CNE</label>
+            <input type="text" id="cne" name="CNE" required><br><br>
 
-            <label for="ville">Ville</label>
-            <select id="ville" name="ville" required>
-                <?php
-                // Fetch and populate cities with their IDs dynamically
-                $conn = $dbConnection->getConnection();
-                $villes = getAllCities($conn);
-
-                foreach ($villes as $ville) {
-                    $villeId = $ville['Id'];
-                    $villeNom = $ville['Ville'];
-                    echo "<option value='$villeId'>$villeNom</option>";
-                }
-                ?>
-            </select><br><br>
-
-            <button name="submite">Ajouter</button>
+            <button type="submit" name="submite">Ajouter</button>
         </form>
     </div>
 

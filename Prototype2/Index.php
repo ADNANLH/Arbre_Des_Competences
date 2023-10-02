@@ -1,6 +1,8 @@
 <?php
 
 require 'Managment/StagiaireManagment.php';
+$stagiaireManager = new StagiaireManagment($conn);
+$stagiaires = $stagiaireManager->getAllData();
 ?>
 
 
@@ -52,6 +54,7 @@ require 'Managment/StagiaireManagment.php';
                 <th>Id</th>
                 <th>Nom et Prénom</th>
                 <th>CNE</th>
+                <th>Actions</th>
             </tr>
             <?php
             foreach ($stagiaires as $stagiaire) {
@@ -60,7 +63,12 @@ require 'Managment/StagiaireManagment.php';
                     <td><?= $stagiaire->getId() ? $stagiaire->getId() : "Null" ?></td>
                     <td><?= $stagiaire->getNom() ? $stagiaire->getNom() : "Null" ?></td>
                     <td><?= $stagiaire->getCNE() ? $stagiaire->getCNE() : "Null"; ?></td>
+                    <td>
+                        <a class="btn btn-warning" href="./UI/Modifier.php?Id=<?php echo $stagiaire->getId() ?>">Modifier</a>
+                        <a class="btn btn-danger" href="./UI/Supprimer.php?Id=<?php echo $stagiaire->getId() ?>">Supprimer</a>
+                    </td>
                 </tr>
+
             <?php } ?>
         </table>
     </div>
