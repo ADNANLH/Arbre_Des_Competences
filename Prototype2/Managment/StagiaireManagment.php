@@ -33,8 +33,30 @@
             }
             return $stagiaires;
         }
-        
 
+        public function Add($stagiaire)
+        {
+            $Nom = $stagiaire->getNom();
+            $CNE = $stagiaire->getCNE();
+        
+            // Prepare the SQL statement with placeholders
+            $sql = "INSERT INTO `personne`(`Nom`, `CNE`) VALUES (?, ?)";
+            $stmt = $this->conn->prepare($sql);
+        
+            // Bind the parameters
+            $stmt->bind_param("ss", $Nom, $CNE);
+        
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                // Insertion successful
+                return true;
+            } else {
+                // Insertion failed
+                return false;
+            }
+        }
+        
+        
     }
     $stagiaireManager = new StagiaireManagment($conn);
     $stagiaires = $stagiaireManager->getAllData();

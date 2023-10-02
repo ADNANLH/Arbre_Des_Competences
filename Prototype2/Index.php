@@ -46,9 +46,11 @@ require 'Managment/StagiaireManagment.php';
 <body>
     <div class="container">
         <h2>Arbre des Competences</h2>
+        <a class="btn btn-light" href="./UI/add.php">Ajouter</a>
         <table>
             <tr>
-                <th>Nom</th>
+                <th>Id</th>
+                <th>Nom et Prénom</th>
                 <th>CNE</th>
             </tr>
             <?php
