@@ -25,9 +25,9 @@
 
             foreach($stagiaires_data as $stagiaire_data){
                 $stagiaire = new stagiaire();
-                $stagiaire->SetId($stagiaire_data['Id']);
-                $stagiaire->SetNom($stagiaire_data['Nom']);
-                $stagiaire->SetCNE($stagiaire_data['CNE']);
+                $stagiaire->setId($stagiaire_data['Id']);
+                $stagiaire->setNom($stagiaire_data['Nom']);
+                $stagiaire->setCNE($stagiaire_data['CNE']);
                 array_push($stagiaires, $stagiaire);
 
             }
@@ -59,6 +59,93 @@
                 return false;
             }
         }
+        
+        public function Delete($Id)
+        {
+            $sql = "DELETE FROM personne WHERE Id = ?";
+            $stmt = $this->conn->prepare($sql);
+        
+            if (!$stmt) {
+                // Handle the error here
+                die("Query preparation failed: " . $this->conn->error);
+            }
+        
+            // Bind the parameter
+            $stmt->bind_param("i", $Id);
+        
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                // Deletion successful
+                return true;
+            } else {
+                // Deletion failed
+                return false;
+            }
+        }
+
+        public function DisplayEdit($Id) {
+            $sql = "SELECT * FROM personne WHERE Id= ?";
+            $stmt = $this->conn->prepare($sql);
+        
+            if (!$stmt) {
+                // Handle the error here
+                die("Query preparation failed: " . $this->conn->error);
+            }
+        
+            // Bind the parameter
+            $stmt->bind_param("i", $Id);
+        
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                // Get the result set
+                $result = $stmt->get_result();
+        
+                // Check if a row was found
+                if ($result->num_rows == 1) {
+                    // Fetch the data as an associative array
+                    $stagiaire_data = $result->fetch_assoc();
+        
+                    // Create a Stagiaire object and set its properties
+                    $stagiaire = new Stagiaire();
+                    $stagiaire->setId($stagiaire_data['Id']);
+                    $stagiaire->setNom($stagiaire_data['Nom']);
+                    $stagiaire->setCNE($stagiaire_data['CNE']);
+        
+                    return $stagiaire;
+                } else {
+                    // No matching record found
+                    return null;
+                }
+            } else {
+                // Query execution failed
+                return null;
+            }
+        }
+        
+        public function Edit($Id, $Nom, $CNE)
+        {
+            // SQL query with placeholders
+            $sql = "UPDATE personne SET Nom=?, CNE=? WHERE Id=?";
+            $stmt = $this->conn->prepare($sql);
+
+            if (!$stmt) {
+                // Handle the error here
+                die("Query preparation failed: " . $this->conn->error);
+            }
+
+            // Bind parameters
+            $stmt->bind_param("ssi", $Nom, $CNE, $Id);
+
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                // Update successful
+                return true;
+            } else {
+                // Update failed
+                return false;
+            }
+        }
+
         
         
         

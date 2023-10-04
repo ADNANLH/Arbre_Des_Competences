@@ -1,34 +1,26 @@
 <?php
 
-
-
     require '../Managment/StagiaireManagment.php';
 
-    if (!empty($_POST)) {
-        // Create a new StagiaireManagment instance
+    if(isset($_GET['Id'])){
+        $Id = $_GET['Id'] ;
         $stagiaireManager = new StagiaireManagment($conn);
+        $Stagiaire = $stagiaireManager->DisplayEdit($Id);
 
-        // Create a new Stagiaire instance and set its properties
-        $stagiaire = new Stagiaire();
-        $stagiaire->setNom($_POST['Nom']);
-        $stagiaire->setCNE($_POST['CNE']);
-
-        // Call the Add method of StagiaireManagment with the Stagiaire instance
-        $result = $stagiaireManager->Add($stagiaire);
-
-        if ($result) {
-            // Insertion successful
-            header("Location: ../index.php");
-        } else {
-            // Insertion failed, handle the error as needed
-            echo "Insertion failed.";
-        }
+    }
+     
+    if(isset($_POST['Modifier'])){
+        $Id = $_POST['Id'];
+        $Nom = $_POST['Nom'];
+        $CNE = $_POST['CNE'];
+        $stagiaireManager->Edit($Id, $Nom, $CNE);
+        header('Location: ../index.php');
     }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,17 +56,21 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h2 class="title mb-5">Ajouter un stagiaire</h2>
+        <h2 class="title mb-5">Modifier le stagiaire <?php echo $Stagiaire->getNom()?></h2>
         <form action="" method="POST" class="form">
-            <label for="Nom">Nom Complet:</label><br>
-            <input type="text" id="nom" name="Nom" required><br><br>
+            <label for="Id">Id :</label><br>
+            <input type="text" id="id" name="Id" value="<?php echo $Stagiaire->getId()?>" readonly><br><br>
 
-            <label for="CNE">CNE</label><br>
-            <input type="text" id="cne" name="CNE" required><br><br>
+            <label for="Nom">Nom Complet :</label><br>
+            <input type="text" id="nom" name="Nom" value="<?php echo $Stagiaire->getNom()?>"><br><br>
 
-            <button type="submit" class="btn btn-primary" name="submite">Ajouter</button>
+            <label for="CNE">CNE :</label><br>
+            <input type="text" id="cne" name="CNE" value="<?php echo $Stagiaire->getCNE()?>" ><br><br>
+
+            <button type="submit" class="btn btn-primary" name="Modifier">Modifier</button>
         </form>
     </div>
 
