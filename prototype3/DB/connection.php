@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'Projet1-Prototype1');
+define('DB_DATABASE', 'projet2-prototype');
 
 class DatabaseConnection
 {

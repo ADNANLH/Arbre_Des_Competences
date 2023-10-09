@@ -5,6 +5,7 @@
         private $Id;
         private $Nom;
         private $CNE;
+        private $Ville;
 
         function setId($Id){
             $this->Id = $Id;
@@ -28,6 +29,14 @@
 
         function getCNE(){
             return $this->CNE;
+        }
+
+        function setVille($Ville){
+            $this->Ville = $Ville;
+        }
+
+        function getVille(){
+            return $this->Ville;
         }
 
     }

@@ -5,7 +5,7 @@
         private $serverName = "localhost";
         private $username = "root";
         private $password = "";
-        private $dbname  = "Projet1-Prototype1";
+        private $dbname  = "Projet2-Prototype";
         private $charset = "utf8mb4";
         private $pdo;
 
