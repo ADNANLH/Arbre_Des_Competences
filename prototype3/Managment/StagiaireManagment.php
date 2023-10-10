@@ -150,27 +150,20 @@
                 return false;
             }
         }
-
         public function getVilles()
         {
-            $Villes = [];
             $sql = "SELECT * FROM ville";
             $query = mysqli_query($this->conn, $sql);
-            $stagiaires_data = mysqli_fetch_all($query, MYSQLI_ASSOC);
-            $stagiaires = array();
-
+            $Villes_data = mysqli_fetch_all($query, MYSQLI_ASSOC);
+            $Villes = array();
         
-            if (!$result) {
-              
-                return $cities;
+            foreach ($Villes_data as $villeData) {
+                $Villes[] = ['id' => $villeData['Id'], 'name' => $villeData['VilleNom']];
             }
         
-            while ($cityData = mysqli_fetch_assoc($result)) {
-                $cities[] = ['id' => $cityData['Id'], 'name' => $cityData['Nom']];
-            }
-        
-            return $cities;
+            return $Villes;
         }
+        
 
         
         
