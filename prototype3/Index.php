@@ -54,6 +54,7 @@ $stagiaires = $stagiaireManager->getAllData();
                 <th>Id</th>
                 <th>Nom et Prénom</th>
                 <th>CNE</th>
+                <th>Ville</th>
                 <th>Actions</th>
             </tr>
             <?php
@@ -63,6 +64,7 @@ $stagiaires = $stagiaireManager->getAllData();
                     <th><?= $stagiaire->getId() ? $stagiaire->getId() : "Null" ?></th>
                     <td><?= $stagiaire->getNom() ? $stagiaire->getNom() : "Null" ?></td>
                     <td><?= $stagiaire->getCNE() ? $stagiaire->getCNE() : "Null"; ?></td>
+                    <td><?= $stagiaire->getVilleNom() ? $stagiaire->getVilleNom() : "Null"; ?></td>
                     <td>
                         <a class="btn btn-warning " href="./UI/Modifier.php?Id=<?php echo $stagiaire->getId() ?>">Modifier</a>
                         <a class="btn btn-danger" href="./UI/Supprimer.php?Id=<?php echo $stagiaire->getId() ?>">Supprimer</a>

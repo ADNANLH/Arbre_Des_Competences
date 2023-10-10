@@ -18,7 +18,11 @@
         }
 
         public function getAllData(){
-            $sql = "SELECT * FROM personne";
+         
+            $sql = 'SELECT personne.*, ville.VilleNom 
+                FROM personne 
+                INNER JOIN ville ON personne.VilleId = ville.Id;
+            ';
             $query = mysqli_query($this->conn, $sql);
             $stagiaires_data = mysqli_fetch_all($query, MYSQLI_ASSOC);
             $stagiaires = array();
@@ -28,18 +32,19 @@
                 $stagiaire->setId($stagiaire_data['Id']);
                 $stagiaire->setNom($stagiaire_data['Nom']);
                 $stagiaire->setCNE($stagiaire_data['CNE']);
+                $stagiaire->setVilleNom($stagiaire_data['VilleNom']);
                 array_push($stagiaires, $stagiaire);
 
             }
             return $stagiaires;
         }
 
-        public function Add($stagiaire) {
+        public function Add($stagiaire, $VilleId) {
             $Nom = $stagiaire->getNom();
             $CNE = $stagiaire->getCNE();
         
             // Prepare the SQL statement with placeholders
-            $sql = "INSERT INTO `personne` (`Nom`, `CNE`) VALUES (?, ?)";
+            $sql = "INSERT INTO `personne`(`Nom`, `CNE`, `VilleId`) VALUES ('$Nom', '$CNE', '$VilleId')";
             $stmt = $this->conn->prepare($sql);
         
             if (!$stmt) {
@@ -48,7 +53,7 @@
             }
         
             // Bind the parameters
-            $stmt->bind_param("ss", $Nom, $CNE);
+            $stmt->bind_param("ss", $Nom, $CNE, $VilleId);
         
             // Execute the prepared statement
             if ($stmt->execute()) {
@@ -144,6 +149,27 @@
                 // Update failed
                 return false;
             }
+        }
+
+        public function getVilles()
+        {
+            $Villes = [];
+            $sql = "SELECT * FROM ville";
+            $query = mysqli_query($this->conn, $sql);
+            $stagiaires_data = mysqli_fetch_all($query, MYSQLI_ASSOC);
+            $stagiaires = array();
+
+        
+            if (!$result) {
+              
+                return $cities;
+            }
+        
+            while ($cityData = mysqli_fetch_assoc($result)) {
+                $cities[] = ['id' => $cityData['Id'], 'name' => $cityData['Nom']];
+            }
+        
+            return $cities;
         }
 
         

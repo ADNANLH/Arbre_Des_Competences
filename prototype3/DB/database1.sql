@@ -30,7 +30,7 @@ CREATE TABLE `personne` (
   `Id` INT AUTO_INCREMENT PRIMARY KEY,
   `Nom` VARCHAR(50) NOT NULL,
   `CNE` VARCHAR(11) NOT NULL,
-  `Ville_Id` INT(11) NOT NULL
+  `VilleId` INT(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -71,14 +71,14 @@ INSERT INTO `personne` (`Id`, `Nom`, `CNE`, `Ville_Id`) VALUES
 
 CREATE TABLE `ville` (
   `Id` INT AUTO_INCREMENT PRIMARY KEY,
-  `Nom` VARCHAR(50) NOT NULL
+  `VilleNom` VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Data dump for table `ville`
 --
 
-INSERT INTO `ville` (`Id`, `Nom`) VALUES
+INSERT INTO `ville` (`Id`, `VilleNom`) VALUES
 (1, 'Tetouan'),
 (2, 'Tanger'),
 (3, 'Casablanca'),
