@@ -25,6 +25,62 @@ class TraineesManagment extends Db
         }
         return $allTraineesDataArray;
     }
+
+    public function countTrainees(){
+        $stm = $this->connect()->prepare('SELECT ville.Id , ville.Nom AS VilleNom, COUNT(presonne.Id) AS TrainerCount
+        FROM personne 
+        INNER JOIN ville ON personne.Ville_Id = ville.Id
+        GROUP BY ville.Id, ville.Nom;');
+        if(!$stm->execute()){
+            $stm = null;
+            exit();
+        }
+        $countedTrainees = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $countedTrainees;
+    }
+
+
+    public function addTrainee($addTrainee){
+        $name = $addTrainee->getName();
+        $cne = $addTrainee->getCNE();
+        $city = $addTrainee->getCity();
+        $type = "stagiaire";
+        $stm = $this->connect()->prepare('INSERT INTO personne (Nom , CNE , Type , Ville_Id) VALUE (:name , :cne , :type , :city)');
+        $stm->bindParam(':name', $name);
+        $stm->bindParam(':cne', $cne);
+        $stm->bindParam(':type', $type);
+        $stm->bindParam(':city', $city);
+        $stm->execute();
+
+    }
+
+    public function updateTrainner($update)
+    {
+        $id = $update->getId();
+        $name = $update->getName();
+        $cne = $update->getCNE();
+        $city = $update->getCity();
+        $query = 'UPDATE personne SET Nom = :name , CNE = :cne , Ville_Id = :ville WHERE Id=:id';
+        $stm = $this->connect()->prepare($query);
+        $stm->bindParam(':name', $name);
+        $stm->bindParam(':cne', $cne);
+        $stm->bindParam(':ville', $city);
+        $stm->bindParam(':id', $id);
+        $stm->execute();
+    }
+
+    public function deleteTrainner($delete)
+    {
+        $id = $delete->getId();
+        $query = 'DELETE FROM personne WHERE Id = :id';
+        $stm = $this->connect()->prepare($query);
+        $stm->bindParam(':id', $id);
+        $stm->execute();
+    }
+
+
+
+
 }
 
 ?>
