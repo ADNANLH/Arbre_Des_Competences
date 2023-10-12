@@ -2,6 +2,7 @@
 include_once '../DB/connect.php';
 include_once '../DB/traineesManagment.php';
 include_once '../DB/cities.php';
+include_once '../Entity/trainees.php';
 
 $traineesData = new TraineesManagment();
 $traineesInfo = $traineesData->getTraineesData();
@@ -10,16 +11,31 @@ $citiesNamesData = new Cities();
 $citiesNamesList = $citiesNamesData->getCitiesList();
 $countTrainees = new TraineesManagment();
 // $theCountResult = $countTrainees->countTrainnes();
+if(isset($_POST['confirm_Data'])){
+    $addTrainee = new Trainees();
+    $addTrainee->setId($_POST['personId']);
+    $addTrainee->setName($_POST['name']);
+    $addTrainee->setCNE($_POST['cne']);
+    $addTrainee->setCity($_POST['city']);
+    $traineesData->addTrainee($addTrainee);
+}
+if (isset($_POST['confirm_Update'])) {
 
+    $update = new Trainees();
+    $update->setId($_POST['personId']);
+    $update->setName($_POST['name']);
+    $update->setCNE($_POST['cne']);
+    $update->setCity($_POST['city']);
+    $traineesData->updateTrainner($update);
+    // header("Location: ../presentation/index.php");
+}
 
-// $dataPoints = [];
-// foreach ($theCountResult as $city) {
-//     $dataPoint = array(
-//         "y" => $city["TrainerCount"],
-//         "label" => $city["VilleNom"]
-//     );
-//     array_push($dataPoints, $dataPoint);
-// }
+if (isset($_POST['confirm_delete'])) {
+    $delete = new Trainees();
+    $delete->setId($_POST['delete_id']);
+    $traineesData->deleteTrainner($delete);
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +59,7 @@ $countTrainees = new TraineesManagment();
     </div>
     <section class="mb-5 hide" id="hide">
         <div class="container mt-5">
-            <form action="../works/controller.php" method="POST">
+            <form action="" method="POST">
                 <div class="form-group">
                     <input type="hidden" id="person_Id" name="personId">
                     <label for="nom">Name</label>
@@ -99,10 +115,10 @@ $countTrainees = new TraineesManagment();
                             <?= $traineeInfo->getCity() ? $traineeInfo->getCity() : "null" ?>
                         </td>
                         <td>
-                            <form action="../works/controller.php" method="POST">
+                            <form action="" method="POST">
                                 <input type="button" value="Edit" class="btn btn-primary" name="edit">
-                                <input type="button" value="Delete" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#DeleteModal" name="delete">
+                                <input type="hidden" name="delete_id" value="<?= $traineeInfo->getId() ?>">
+                                <input type="submit" class="btn btn-danger" name="confirm_delete" value="Delete">
                             </form>
                         </td>
                     </tr>
@@ -112,3 +128,18 @@ $countTrainees = new TraineesManagment();
         </table>
 
     </section>
+
+    <!-- delete modale -->
+   
+    
+    <!-- Modal -->
+
+    <div class="hide" id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+
+    
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>

@@ -69,7 +69,7 @@ class TraineesManagment extends Db
         $stm->execute();
     }
 
-    public function deleteTrainner($delete)
+      public function deleteTrainner($delete)
     {
         $id = $delete->getId();
         $query = 'DELETE FROM personne WHERE Id = :id';
