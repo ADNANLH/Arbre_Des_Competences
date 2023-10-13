@@ -19,16 +19,7 @@ if(isset($_POST['confirm_Data'])){
     $addTrainee->setCity($_POST['city']);
     $traineesData->addTrainee($addTrainee);
 }
-if (isset($_POST['confirm_Update'])) {
 
-    $update = new Trainees();
-    $update->setId($_POST['personId']);
-    $update->setName($_POST['name']);
-    $update->setCNE($_POST['cne']);
-    $update->setCity($_POST['city']);
-    $traineesData->updateTrainner($update);
-    // header("Location: ../presentation/index.php");
-}
 
 if (isset($_POST['confirm_delete'])) {
     $delete = new Trainees();
@@ -55,6 +46,7 @@ if (isset($_POST['confirm_delete'])) {
     <div class="container mt-5">
         <div class="text-center">
             <button type="button" class="btn btn-primary mb-5 add_new">Add New Trainer</button>
+            <button class="btn btn-warning" id="view_Chart">Chart View</button>
         </div>
     </div>
     <section class="mb-5 hide" id="hide">
@@ -116,7 +108,7 @@ if (isset($_POST['confirm_delete'])) {
                         </td>
                         <td>
                             <form action="" method="POST">
-                                <input type="button" value="Edit" class="btn btn-primary" name="edit">
+                                <a class="btn btn-warning " href="./modifier.php?Id=<?= $traineeInfo->getId() ?>">Modifier</a>
                                 <input type="hidden" name="delete_id" value="<?= $traineeInfo->getId() ?>">
                                 <input type="submit" class="btn btn-danger" name="confirm_delete" value="Delete">
                             </form>
@@ -129,12 +121,9 @@ if (isset($_POST['confirm_delete'])) {
 
     </section>
 
-    <!-- delete modale -->
-   
-    
-    <!-- Modal -->
+  
 
-    <div class="hide" id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <div class="" id="chartContainer" style="height: 370px; width: 100%;"></div>
 
 
     
@@ -142,4 +131,29 @@ if (isset($_POST['confirm_delete'])) {
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
+    <script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Trainner Cities"
+                },
+                axisY: {
+                    title: "Trainner count"
+                },
+                data: [{
+                    type: "column",
+                    yValueFormatString: "#,##0.## Trainner",
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
+</body>
+</html>

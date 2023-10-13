@@ -26,19 +26,44 @@ class TraineesManagment extends Db
         return $allTraineesDataArray;
     }
 
-    public function countTrainees(){
-        $stm = $this->connect()->prepare('SELECT ville.Id , ville.Nom AS VilleNom, COUNT(presonne.Id) AS TrainerCount
-        FROM personne 
-        INNER JOIN ville ON personne.Ville_Id = ville.Id
-        GROUP BY ville.Id, ville.Nom;');
-        if(!$stm->execute()){
-            $stm = null;
-            exit();
-        }
-        $countedTrainees = $stm->fetchAll(PDO::FETCH_ASSOC);
-        return $countedTrainees;
-    }
 
+    public function GetTrainee($Id) {
+        $sql = "SELECT personne.Id, personne.Nom, personne.CNE, ville.Nom AS VilleNom 
+                FROM personne 
+                INNER JOIN ville ON personne.Ville_Id = ville.Id
+                WHERE personne.Id = ?"; // Specify the table in the WHERE clause
+        $stm = $this->connect()->prepare($sql);
+    
+        if (!$stm) {
+            return null; // Exit if the statement preparation fails
+        }
+    
+        // Bind the parameter
+        $stm->bindParam(1, $Id, PDO::PARAM_INT); // Assuming integer, adjust the type if necessary
+    
+        // Execute the prepared statement
+        if (!$stm->execute()) {
+            return null; // Exit if the execution fails
+        }
+    
+        // Fetch the data as an associative array
+        $trainee_data = $stm->fetch(PDO::FETCH_ASSOC);
+    
+        if ($trainee_data) {
+            // Create a Stagiaire object and set its properties
+            $traineeInfo = new Trainees();
+            $traineeInfo->setId($trainee_data['Id']);
+            $traineeInfo->setName($trainee_data['Nom']);
+            $traineeInfo->setCNE($trainee_data['CNE']);
+            $traineeInfo->setCity($trainee_data['VilleNom']);
+            return $traineeInfo;
+        } else {
+            // No matching record found
+            return null;
+        }
+    }
+    
+    
 
     public function addTrainee($addTrainee){
         $name = $addTrainee->getName();
