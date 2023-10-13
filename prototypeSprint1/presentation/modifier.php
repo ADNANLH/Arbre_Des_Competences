@@ -45,16 +45,16 @@ $citiesNamesList = $citiesNamesData->getCitiesList();
         <div class="form-group">
             <input type="hidden" id="person_Id" name="personId" value="<?= $traineeInfo->getId() ?>">
             <label for="nom">Name</label>
-            <input type="text" class="form-control" id="name" value="<?= $traineeInfo->getName() ? $traineeInfo->getName() : "null" ?>" name="name" required>
+            <input type="text" class="form-control" id="name" value="<?= $traineeInfo->getName() ?>" name="name" required>
         </div>
         <div class="form-group">
             <label for="cne">CNE</label>
-            <input type="text" class="form-control" id="cne" name="cne" value="<?= $traineeInfo->getCNE() ? $traineeInfo->getCNE() : "null" ?>" required>
+            <input type="text" class="form-control" id="cne" name="cne" value="<?= $traineeInfo->getCNE()  ?>" required>
         </div>
         <div class="form-group">
             <label for="ville">City</label>
             <select class="form-control" id="city_selector" name="city" required>
-                <option value=""><?= $traineeInfo->getCity() ? $traineeInfo->getCity() : "null"  ?></option>
+                <option value=""><?= $traineeInfo->getCity()  ?></option>
                 <?php
                 foreach ($citiesNamesList as $cityName) {
                     ?>

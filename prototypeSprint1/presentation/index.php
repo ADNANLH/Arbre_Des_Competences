@@ -10,7 +10,7 @@ $traineesInfo = $traineesData->getTraineesData();
 $citiesNamesData = new Cities();
 $citiesNamesList = $citiesNamesData->getCitiesList();
 $countTrainees = new TraineesManagment();
-// $theCountResult = $countTrainees->countTrainnes();
+
 if(isset($_POST['confirm_Data'])){
     $addTrainee = new Trainees();
     $addTrainee->setId($_POST['personId']);
@@ -18,6 +18,7 @@ if(isset($_POST['confirm_Data'])){
     $addTrainee->setCNE($_POST['cne']);
     $addTrainee->setCity($_POST['city']);
     $traineesData->addTrainee($addTrainee);
+
 }
 
 
@@ -28,7 +29,6 @@ if (isset($_POST['confirm_delete'])) {
     header('Location: ./index.php');
 
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -44,11 +44,11 @@ if (isset($_POST['confirm_delete'])) {
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Add Person</title>
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="text-center">
             <button type="button" class="btn btn-primary mb-5 add_new">Add New Trainer</button>
-            <button class="btn btn-warning" id="view_Chart">Chart View</button>
         </div>
     </div>
     <section class="mb-5 hide" id="hide">
@@ -124,38 +124,12 @@ if (isset($_POST['confirm_delete'])) {
     </section>
 
   
-
-    <div class="" id="chartContainer" style="height: 370px; width: 100%;"></div>
-
-
-    
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous">
     </script>
-    <script>
-        window.onload = function () {
 
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                theme: "light2",
-                title: {
-                    text: "Trainner Cities"
-                },
-                axisY: {
-                    title: "Trainner count"
-                },
-                data: [{
-                    type: "column",
-                    yValueFormatString: "#,##0.## Trainner",
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                }]
-            });
-            chart.render();
-
-        }
-    </script>
 </body>
 </html>
