@@ -25,6 +25,8 @@ if (isset($_POST['confirm_delete'])) {
     $delete = new Trainees();
     $delete->setId($_POST['delete_id']);
     $traineesData->deleteTrainner($delete);
+    header('Location: ./index.php');
+
 }
 
 
