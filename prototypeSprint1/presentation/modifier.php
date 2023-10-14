@@ -1,7 +1,7 @@
 <?php 
 include_once '../DB/connect.php';
-include_once '../DB/traineesManagment.php';
-include_once '../DB/cities.php';
+include_once '../BLL/traineesManagment.php';
+include_once '../BLL/cities.php';
 include_once '../Entity/trainees.php';
 $citiesNamesData = new Cities();
 $citiesNamesList = $citiesNamesData->getCitiesList();
@@ -66,7 +66,7 @@ $citiesNamesList = $citiesNamesData->getCitiesList();
                 ?>
             </select>
         </div>
-        <input type="submit" name="Update" class="btn btn-primary" id="confirm" value="Confirm">
+        <input type="submit" name="Update" class="btn btn-primary"  value="Confirm">
     </form>
 </div>
 

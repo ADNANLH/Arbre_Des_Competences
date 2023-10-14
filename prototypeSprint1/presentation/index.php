@@ -1,7 +1,7 @@
 <?php
 include_once '../DB/connect.php';
-include_once '../DB/traineesManagment.php';
-include_once '../DB/cities.php';
+include_once '../BLL/traineesManagment.php';
+include_once '../BLL/cities.php';
 include_once '../Entity/trainees.php';
 
 $traineesData = new TraineesManagment();
@@ -11,7 +11,7 @@ $citiesNamesData = new Cities();
 $citiesNamesList = $citiesNamesData->getCitiesList();
 $countTrainees = new TraineesManagment();
 
-if(isset($_POST['confirm_Data'])){
+if(isset($_POST['Add'])){
     $addTrainee = new Trainees();
     $addTrainee->setId($_POST['personId']);
     $addTrainee->setName($_POST['name']);
@@ -22,7 +22,7 @@ if(isset($_POST['confirm_Data'])){
 }
 
 
-if (isset($_POST['confirm_delete'])) {
+if (isset($_POST['Delete'])) {
     $delete = new Trainees();
     $delete->setId($_POST['delete_id']);
     $traineesData->deleteTrainner($delete);
@@ -78,7 +78,7 @@ if (isset($_POST['confirm_delete'])) {
                         ?>
                     </select>
                 </div>
-                <input type="submit" name="confirm_Data" class="btn btn-primary" id="confirm" value="Confirm">
+                <input type="submit" name="Add" class="btn btn-primary" id="confirm" value="Confirm">
             </form>
         </div>
     </section>
@@ -112,7 +112,7 @@ if (isset($_POST['confirm_delete'])) {
                             <form action="" method="POST">
                                 <a class="btn btn-warning " href="./modifier.php?Id=<?= $traineeInfo->getId() ?>">Modifier</a>
                                 <input type="hidden" name="delete_id" value="<?= $traineeInfo->getId() ?>">
-                                <input type="submit" class="btn btn-danger" name="confirm_delete" value="Delete">
+                                <input type="submit" class="btn btn-danger" name="Delete" value="Delete">
                             </form>
                         </td>
                     </tr>
@@ -124,12 +124,8 @@ if (isset($_POST['confirm_delete'])) {
     </section>
 
   
+    <script src="index.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
-    <script src="main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous">
-    </script>
-
+   
 </body>
 </html>
