@@ -1,121 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arbre des compétences</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- AdminLTE CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+<body class="sidebar-mini">
+    <div class="wrapper">
+       
+        <?php 
+          include_once "./layouts/navbar.php";
+          include_once "./layouts/sidebar.php" ;
+        ?>
+        
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Compétences</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            
+                          <a href="./ajouter-competence.php" class="btn btn-primary"><i class="fas fa-plus"></i>Ajouter</a>
+                            
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Référence</th>
+                                        <th>Nom</th>
+                                        <th>Déscription</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-  <!-- Navbar -->
- <?php
-  include'./layouts/navbar.php';
-  include'./layouts/sidebar.php';
- ?>
- 
+                                    <!-- Obtenez toutes les compétences -->
+                                    <tr>
+                                        <td>C1</td>
+                                        <td>Maquette</td>
+                                        <td>Maquetter une application mobile</td>
+                                        <td>Maquetter une application mobile Maquetter une application mobile Maquetter une application mobile Maquetter une application mobile</td>
+                                        <td>
+                                            <a href="./edit-competences.php?Id=1" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                        </td>
+                                    </tr>
 
+                                    <tr>
+                                      <td>C2</td>
+                                      <td>Base Données</td>
+                                        <td>Manipuler une base de données - perfectionnement</td>
+                                        <td class="description">Manipuler une base de données -  perfectionnement perfectionnement perfectionnement perfectionnement </td>
+                                        <td>
+                                            <a href="./edit-competences.php?Id=2" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                        </td>
+                                    </tr>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+                                    <tr>
+                                      <td>C3</td>
+                                      <td>back-end</td>
+                                        <td>Développer la partie back-end d'une application we</td>
+                                        <td>Développer la partie back-end d'une application we</td>
+                                        <td>
+                                            <a href="./edit-competences.php?Id=3" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                        </td>
+                                    </tr>
 
-    <!-- Main content -->
- 
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="#">Solicoders</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div>
-  </footer>
+                                    <tr>
+                                      <td>C4</td>
+                                      <td>gestion</td>
+                                        <td>Collaborer à la gestion d'un projet informatique e</td>
+                                        <td>Collaborer à la gestion d'un projet informatique e</td>
+                                        <td>
+                                            <a href="./edit-competences.php?Id=4" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                        </td>
+                                    </tr>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+                                    <tr>
+                                      <td>C5</td>
+                                      <td>Mobile native</td>
+                                        <td>Développer une application mobile native, avec And</td>
+                                        <td>Développer une application mobile native, avec And</td>
+                                        <td>
+                                            <a href="./edit-competences.php?Id=5" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                        </td>
+                                    </tr>
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
+                                    <tr>
+                                      <td>C6</td>
+                                      <td>tests</td>
+                                        <td>Préparer et exécuter les plans de tests d'une appl</td>
+                                        <td>Préparer et exécuter les plans de tests d'une appl</td>
+                                        <td>
+                                            <a href="./edit-competences.php?Id=6" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                      <td>C7</td>
+                                      <td>déploiement</td>
+                                        <td>Préparer et exécuter le déploiement d'une applicat</td>
+                                        <td>Préparer et exécuter le déploiement d'une applicat</td>
+                                        <td>
+                                            <a href="./edit-competences.php?Id=7" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- en skills -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- main Js -->
+        <script src="./asset/JS/main.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Bootstrap 5 JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
+        <script>
+  tinymce.init({
+    selector: '#inputDescription', // Use the textarea's ID
+    plugins: 'advlist autolink lists link image charmap print preview anchor',
+    toolbar_mode: 'floating',
+  });
 </script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+    </div>
+    <!-- /.wrapper -->
 </body>
+
 </html>

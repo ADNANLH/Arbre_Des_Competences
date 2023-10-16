@@ -12,28 +12,22 @@
                 <!-- Skills Management -->
                 <li class="nav-item">
                     <a href="./index.php" class="nav-link">
-                        <i class="fa-solid fa-list-check"></i>
-                        <p>
-                            Gestion des compétences
-                        </p>
+                        <i class="nav-icon fas fa-terminal"></i>
+                        <p>Gestion des compétences</p>
                     </a>
                 </li>
                 <!-- Niveau Management -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                        Gestion des niveaux
-                        </p>
+                        <p>Gestion des niveaux</p>
                     </a>
                 </li>
                 <!-- Interns Management -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
-                        <p>
-                        Gestion des stagiaires
-                        </p>
+                        <p>Gestion des stagiaires</p>
                     </a>
                 </li>
                 
