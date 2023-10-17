@@ -25,7 +25,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Ajouter une compétence</h1>
+                            <h1 class="m-0">Modifier une compétence</h1>
                         </div>
                     </div>
                 </div>
@@ -38,20 +38,20 @@
                             <form>
                                 <div class="mb-3">
                                     <label for="code" class="form-label">Code *</label>
-                                    <input type="text" class="form-control" id="code" placeholder="Entrer le code" required>
+                                    <input type="text" class="form-control" id="code" placeholder="C1" value="C1" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reference" class="form-label">Reference *</label>
-                                    <input type="text" class="form-control" id="reference" placeholder="Entrer le référence" required>
+                                    <input type="text" class="form-control" id="reference" placeholder="Maquette" value="Maquette" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nom</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Entrer le nom" required>
+                                    <input type="text" class="form-control" id="name" placeholder="Maquetter une application mobile	" value="Maquetter une application mobile" required>
                                 </div>
                                 <div class="mb-3">
                                 <label for="inputDescription">Déscription</label>  
-                                 <textarea name="description" id="inputDescription"  placeholder="Entrer une déscription" class="form-control" required></textarea>                                  </div>
-                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                 <textarea name="description" id="inputDescription"  placeholder="Maquetter une application mobile	 Maquetter une application mobile	 Maquetter une application mobile	" class="form-control" required></textarea>                                  </div>
+                                <button type="submit" class="btn btn-primary">Modifier</button>
                             </form>
                         </div>
                     </div>
