@@ -8,7 +8,13 @@
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
     <script src="https://cdn.tiny.cloud/1/bpigh0eyml9mx3mvsepi4df983mqcukj87efwet58omkz4s9/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<style>
+    .font-red {
+    color: red;
+    font-weight: bold; /* You can add more styling if needed */
+}
 
+</style>
 </head>
 <body class="sidebar-mini">
     <div class="wrapper">
@@ -37,15 +43,15 @@
                         <div class="card-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="code" class="form-label">Code *</label>
+                                    <label for="code" class="form-label">Code </label>
                                     <input type="text" class="form-control" id="code" placeholder="Entrer le code" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="reference" class="form-label">Reference *</label>
+                                    <label for="reference" class="form-label">Reference <span class="font-red">*</span></label>
                                     <input type="text" class="form-control" id="reference" placeholder="Entrer le référence" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nom</label>
+                                    <label for="name" class="form-label">Nom <span class="font-red">*</span></label>
                                     <input type="text" class="form-control" id="name" placeholder="Entrer le nom" required>
                                 </div>
                                 <div class="mb-3">
